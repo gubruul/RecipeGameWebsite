@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Beispielseite — Tabs</title>
+
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--muted:#98a0b3;--accent:#60a5fa}
+    *{box-sizing:border-box}
+    body{
+      font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,Arial;
+      line-height:1.45;
+      margin:0;
+      background:linear-gradient(180deg,#07102a 0%, #081026 100%);
+      color:#e6eef8;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:48px;
+    }
+    .container{width:100%;max-width:900px}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    .logo{
+      width:56px;height:56px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#7dd3fc);
+      display:flex;align-items:center;justify-content:center;
+      color:#04263b;font-weight:700;font-size:18px
+    }
+    h1{font-size:20px;margin:0}
+    p.lead{margin:0;color:var(--muted);font-size:14px}
+
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.03));
+      border-radius:12px;
+      padding:18px;
+    }
+
+    /* tabs */
+    .tabs{display:flex;gap:8px;margin-bottom:14px}
+    .tab-btn{
+      background:transparent;
+      border:1px solid transparent;
+      padding:10px 14px;
+      border-radius:10px;
+      color:var(--muted);
+      cursor:pointer;
+      font-weight:600;
+    }
+    .tab-btn[aria-selected="true"]{
+      background:linear-gradient(90deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));
+      border-color:rgba(255,255,255,0.04);
+      color:#e6eef8;
+      box-shadow:0 6px 18px rgba(2,6,23,0.6)
+    }
+    .tab-btn:focus{outline:3px solid rgba(96,165,250,0.16);outline-offset:3px}
+
+    .panel{padding:12px 4px}
+    .panel h2{margin-top:0}
+    .muted{color:var(--muted);font-size:14px}
+
+    @media (max-width:560px){
+      body{padding:18px}
+      .tabs{overflow:auto;padding-bottom:6px}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <div class="logo">SG</div>
+      <div>
+        <h1>Spiel-Info — Demo</h1>
+        <p class="lead">Ein kleines Beispiel mit drei Tabs.</p>
+      </div>
+    </header>
+
+    <section class="card" aria-labelledby="tabs-label">
+      <div id="tabs-label" style="position:absolute;left:-9999px;">Tabs</div>
+
+      <div role="tablist" aria-label="Navigation" class="tabs">
+        <button class="tab-btn" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" tabindex="0">Zum Spiel</button>
+        <button class="tab-btn" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">Das Team</button>
+        <button class="tab-btn" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">FAQ</button>
+      </div>
+
+      <div class="panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+        <h2>Zum Spiel</h2>
+        <p class="muted">Kurze Einführung</p>
+        <p>Willkommen zum Spiel! Hier findest du eine Beschreibung des Spielprinzips, der Regeln und des Ablaufs.</p>
+        <ul>
+          <li>Spielstart: 20:00 Uhr</li>
+          <li>Dauer: ca. 90 Minuten</li>
+          <li>Ort: Beispielstadion</li>
+        </ul>
+      </div>
+
+      <div class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+        <h2>Das Team</h2>
+        <p class="muted">Kurzvorstellung</p>
+        <p>Das Team besteht aus motivierten Spielerinnen und Spielern, Trainerstab und Unterstützern.</p>
+        <ol>
+          <li>Max Mustermann — Kapitän, Stürmer</li>
+          <li>Anna Beispiel — Torwartin</li>
+          <li>Trainer: Lisa Beispiel</li>
+        </ol>
+      </div>
+
+      <div class="panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+        <h2>FAQ</h2>
+        <p class="muted">Häufige Fragen</p>
+        <p><strong>Frage:</strong> Wann sind die nächsten Spiele?</p>
+        <p><em>Antwort:</em> Termine werden regelmäßig aktualisiert.</p>
+        <p><strong>Frage:</strong> Wie kann ich Tickets kaufen?</p>
+        <p><em>Antwort:</em> Über die offizielle Seite oder Vorverkaufsstellen.</p>
+      </div>
+    </section>
+  </main>
+
+<script>
+const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+
+function activateTab(newTab){
+  tabs.forEach(tab=>{
+    const selected = tab === newTab;
+    tab.setAttribute('aria-selected', selected);
+    tab.tabIndex = selected ? 0 : -1;
+  });
+  panels.forEach(panel =>
+    panel.hidden = panel.id !== newTab.getAttribute('aria-controls')
+  );
+
+  const hash = newTab.textContent.trim().toLowerCase().replace(/\s+/g,'-');
+  history.replaceState(null,'', '#'+hash);
+}
+
+const hash = location.hash.replace('#','');
+if(hash){
+  const match = tabs.find(t => t.textContent.trim().toLowerCase().replace(/\s+/g,'-') === hash);
+  if(match) activateTab(match);
+}
+
+tabs.forEach(tab=>{
+  tab.addEventListener('click', ()=> activateTab(tab));
+  tab.addEventListener('keydown', e => {
+    const idx = tabs.indexOf(tab);
+    if(e.key === 'ArrowRight') tabs[(idx+1)%tabs.length].focus();
+    if(e.key === 'ArrowLeft') tabs[(idx-1+tabs.length)%tabs.length].focus();
+    if(e.key === 'Home') tabs[0].focus();
+    if(e.key === 'End') tabs[tabs.length-1].focus();
+    if(e.key === 'Enter' || e.key === ' ') activateTab(tab);
+  });
+});
+</script>
+
+</body>
+</html>

@@ -20,13 +20,22 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 20px;
+      box-sizing: border-box;
     }
 
     /* Tab headers */
     .tabs {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
       border-bottom: 2px solid #851919;
+      gap: 6px;
+      padding-bottom: 4px;
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none; /* Chrome / Safari */
     }
 
     .tab {
@@ -35,10 +44,12 @@
       font-weight: bold;
       color: white;
       background: #851919;
-      margin-right: 5px;
+      flex-shrink: 0;
       border-radius: 8px 8px 0 0;
       user-select: none;
       font-family: 'Creepster', cursive;
+      text-align: center;
+      white-space: nowrap;
     }
 
     .tab.active {
@@ -63,20 +74,107 @@
     h1, .tab-title {
       color: #851919;
       font-family: 'Creepster', cursive;
+      margin-top: 0;
     }
 
     h2 {
       color: #3C403F;
     }
 
-    /* Mobile adjustments */
+    /* Make images, videos, tables responsive */
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      display: block;
+      overflow-x: auto;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    ul, ol {
+      padding-left: 1.2rem;
+      margin: 0 0 1rem 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    button, .btn {
+      cursor: pointer;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #851919;
+      color: #fff;
+      transition: background 0.2s;
+      width: auto;
+    }
+
+    button:hover, .btn:hover {
+      background: #3C403F;
+    }
+
+    /* Mobile-first improvements */
     @media (max-width: 600px) {
+      .tab {
+        font-size: 1.1rem;
+        padding: 14px 20px;
+        border-radius: 12px;
+      }
+
+      .tab-container {
+        padding: 12px;
+      }
+
+      .tab-content {
+        padding: 16px;
+      }
+    }
+
+    /* Smartphone optimization */
+    @media (max-width: 480px) {
       .tabs {
         flex-direction: column;
+        gap: 8px;
+        padding-bottom: 0;
       }
+
       .tab {
-        margin-bottom: 6px;
-        border-radius: 8px;
+        width: 100%;
+        padding: 12px 0;
+      }
+
+      .tab-container {
+        padding: 8px;
+      }
+
+      .tab-content {
+        padding: 12px;
+      }
+
+      h1, h2, p {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      button, .btn {
+        width: 100%;
+        padding: 12px 0;
+      }
+
+      ul, ol {
+        padding-left: 1rem;
       }
     }
   </style>

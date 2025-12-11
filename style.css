@@ -18,6 +18,7 @@ body {
 /* Tabs */
 .tabs {
   display: flex;
+  flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none; /* Firefox */
   gap: 6px;
@@ -41,6 +42,8 @@ body {
   font-size: 1rem;
   user-select: none;
   font-family: "Creepster", cursive;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .tab.active {
@@ -73,14 +76,25 @@ h2 {
   margin-top: 10px;
 }
 
-/* Make images and videos responsive */
+/* Make images, videos, tables responsive */
 img, video {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Make lists responsive */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
 ul, ol {
   padding-left: 1.2rem;
   margin: 0 0 1rem 0;
@@ -90,7 +104,6 @@ li {
   margin-bottom: 0.5rem;
 }
 
-/* Make buttons responsive */
 button, .btn {
   cursor: pointer;
   padding: 10px 16px;
@@ -100,6 +113,7 @@ button, .btn {
   background: #851919;
   color: #fff;
   transition: background 0.2s;
+  width: auto;
 }
 
 button:hover, .btn:hover {
@@ -125,7 +139,6 @@ button:hover, .btn:hover {
 
 /* Extra optimization for smartphones (max-width 480px) */
 @media (max-width: 480px) {
-  /* Tabs stacked vertically */
   .tabs {
     flex-direction: column;
     gap: 8px;
@@ -152,27 +165,12 @@ button:hover, .btn:hover {
     margin-right: 0;
   }
 
-  /* Buttons full width */
   button, .btn {
     width: 100%;
     padding: 12px 0;
   }
 
-  /* Lists take full width */
   ul, ol {
     padding-left: 1rem;
-  }
-
-  /* Tables responsive */
-  table {
-    width: 100%;
-    display: block;
-    overflow-x: auto;
-    border-collapse: collapse;
-  }
-
-  th, td {
-    padding: 8px;
-    text-align: left;
   }
 }

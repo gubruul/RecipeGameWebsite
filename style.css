@@ -83,6 +83,7 @@ body {
 .tab.active {
   background: #A33A3A;
   box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  position: relative;
 }
 
 /* Verbindung zum Content */
@@ -104,8 +105,8 @@ body {
   display: none;
   background: #fff;
   padding: 20px;
-  margin-top: 0;
-  border-radius: 0 0 14px 14px;
+  margin-top: 10px;
+  border-radius: 0 0 12px 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 
@@ -148,15 +149,6 @@ img, video {
     z-index: 100;
     padding-bottom: 10px; /* Platz für Schatten & Marker */
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  }
-
-  /* Header schrumpft optisch */
-  .site-header {
-    padding: 12px 10px 10px;
-  }
-
-  .site-header h1 {
-    font-size: 1.9rem;
   }
 
   /* Tabs untereinander */

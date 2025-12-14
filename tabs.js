@@ -16,3 +16,13 @@ tabs.forEach(tab => {
     document.getElementById(tab.dataset.tab).classList.add("active");
   });
 });
+
+const header = document.querySelector(".site-header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 40) {
+    header.classList.add("shrink");
+  } else {
+    header.classList.remove("shrink");
+  }
+});

@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Title wird per JS gesetzt -->
   <title></title>
 
   <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
@@ -14,53 +12,102 @@
 
   <div class="tab-container">
 
-    <header class="site-header">
-      <h1 id="site-title"></h1>
-    </header>
+    <!-- Sticky Wrapper -->
+    <div class="sticky-area">
+      <header class="site-header">
+        <h1 id="site-title"></h1>
+      </header>
 
-    <div class="tabs">
-      <div class="tab active" data-tab="spiel">Zum Spiel</div>
-      <div class="tab" data-tab="rezepte">Rezepte</div>
-      <div class="tab" data-tab="playlist">Playlist</div>
-      <div class="tab" data-tab="kontakt">Kontakt</div>
-      <div class="tab" data-tab="team">Team</div>
-      <div class="tab" data-tab="feedback">Feedback Forum</div>
+      <div class="tabs">
+        <div class="tab active" data-tab="spiel">🎮 Zum Spiel</div>
+        <div class="tab" data-tab="rezepte">🍲 Rezepte</div>
+        <div class="tab" data-tab="playlist">🎵 Playlist</div>
+        <div class="tab" data-tab="kontakt">✉️ Kontakt</div>
+        <div class="tab" data-tab="team">👥 Team</div>
+        <div class="tab" data-tab="feedback">💬 Feedback</div>
+      </div>
     </div>
 
+    <!-- CONTENT -->
     <div id="spiel" class="tab-content active">
       <h1>Zum Spiel</h1>
       <h2>Einführung</h2>
-      <p>Hier steht Beispieltext über das Spiel und seine wichtigsten Eigenschaften.</p>
+      <p>
+        Willkommen bei unserem Spiel. Dieses Projekt ist als atmosphärisches,
+        erzählerisches Erlebnis gedacht, das Spieler langsam in seine Welt
+        hineinzieht. Der Fokus liegt auf Stimmung, Entdeckung und Entscheidungen.
+      </p>
+
+      <p>
+        Anders als klassische Actionspiele setzt dieses Spiel auf Erkundung,
+        Dialoge und subtile Hinweise. Spieler werden nicht permanent an die Hand
+        genommen, sondern müssen selbst aufmerksam beobachten und kombinieren.
+      </p>
+
+      <h2>Gameplay</h2>
+      <p>
+        Das Gameplay entfaltet sich über mehrere Kapitel, die jeweils neue
+        Mechaniken und Herausforderungen einführen. Einige Entscheidungen
+        beeinflussen den späteren Verlauf der Geschichte.
+      </p>
+
+      <ul>
+        <li>Erkundung verschiedener Areale</li>
+        <li>Dialoge mit Konsequenzen</li>
+        <li>Rätselbasierte Progression</li>
+        <li>Atmosphärischer Soundtrack</li>
+      </ul>
+
+      <p>
+        Während du spielst, wirst du Hinweise entdecken, die nicht immer sofort
+        verständlich sind. Manche Details entfalten ihre Bedeutung erst Stunden
+        später – oder beim zweiten Durchlauf.
+      </p>
+
+      <h2>Technische Hinweise</h2>
+      <p>
+        Das Spiel ist für verschiedene Bildschirmgrößen optimiert und kann sowohl
+        auf mobilen Geräten als auch auf Desktop-Systemen gespielt werden. Die
+        Benutzeroberfläche passt sich dynamisch an.
+      </p>
+
+      <p>
+        Dieser längere Text dient bewusst dazu, Scrollverhalten, Sticky Header
+        und allgemeine Lesbarkeit zu testen. Auf mobilen Geräten solltest du
+        nun sehen, dass Header und Tabs beim Scrollen sichtbar bleiben.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+        scelerisque, lorem nec tristique fermentum, lacus libero luctus sem,
+        eget tincidunt elit lorem nec sapien. Curabitur sit amet risus vitae
+        lorem vestibulum aliquet.
+      </p>
     </div>
 
     <div id="rezepte" class="tab-content">
       <h1>Rezepte</h1>
-      <h2>Beispielrezept</h2>
-      <p>Eine Liste an spannenden Rezepten, die du ausprobieren kannst.</p>
+      <p>Eine Liste an spannenden Rezepten.</p>
     </div>
 
     <div id="playlist" class="tab-content">
       <h1>Playlist</h1>
-      <h2>Unsere Musikempfehlungen</h2>
-      <p>Hier findest du Songs, die perfekt zur Stimmung passen.</p>
+      <p>Unsere Musikempfehlungen.</p>
     </div>
 
     <div id="kontakt" class="tab-content">
       <h1>Kontakt</h1>
-      <h2>So erreichst du uns</h2>
-      <p>Formular oder Kontaktmöglichkeiten können hier platziert werden.</p>
+      <p>So erreichst du uns.</p>
     </div>
 
     <div id="team" class="tab-content">
       <h1>Team</h1>
-      <h2>Wer wir sind</h2>
-      <p>Informationen über die Teammitglieder.</p>
+      <p>Informationen über das Team.</p>
     </div>
 
     <div id="feedback" class="tab-content">
       <h1>Feedback Forum</h1>
-      <h2>Teile deine Meinung</h2>
-      <p>Hier können Nutzer Feedback abgeben oder Ideen einreichen.</p>
+      <p>Teile deine Meinung.</p>
     </div>
 
   </div>

@@ -1,27 +1,12 @@
-/* General */
-body {
-  margin: 0;
-  padding: 0;
+/* Sticky wrapper */
+.sticky-area {
   background: #f5f5f5;
-  color: #333;
-  font-family: Arial, sans-serif;
 }
 
-.tab-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 16px;
-  box-sizing: border-box;
-}
-
-/* ===============================
-   HEADER
-   =============================== */
+/* Header */
 .site-header {
   text-align: center;
-  padding: 20px 12px 16px;
-  margin-bottom: 12px;
+  padding: 18px 12px 12px;
   background: linear-gradient(
     180deg,
     rgba(133,25,25,0.15),
@@ -34,34 +19,21 @@ body {
   margin: 0;
   font-family: "Creepster", cursive;
   color: #851919;
-  font-size: 2.2rem;
 }
 
-/* ===============================
-   TABS
-   =============================== */
+/* Tabs */
 .tabs {
   display: flex;
   gap: 6px;
   overflow-x: auto;
-  scrollbar-width: none;
-  padding-bottom: 6px;
-}
-
-.tabs::-webkit-scrollbar {
-  display: none;
+  padding: 6px 0;
 }
 
 .tab {
-  padding: 12px 18px;
-  flex-shrink: 0;
-  cursor: pointer;
-  font-weight: bold;
-  color: #fff;
   background: #851919;
+  color: #fff;
   border-radius: 12px;
-  font-size: 1rem;
-  user-select: none;
+  padding: 12px 18px;
   font-family: "Creepster", cursive;
   white-space: nowrap;
 }
@@ -70,14 +42,12 @@ body {
   background: #3C403F;
 }
 
-/* ===============================
-   CONTENT
-   =============================== */
+/* Content */
 .tab-content {
   display: none;
   background: #fff;
+  margin-top: 12px;
   padding: 20px;
-  margin-top: 10px;
   border-radius: 14px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
@@ -86,29 +56,16 @@ body {
   display: block;
 }
 
-/* Headlines */
-h1 {
-  color: #851919;
-  font-family: "Creepster", cursive;
-  margin-top: 0;
-}
-
-h2 {
-  color: #3C403F;
-  margin-top: 10px;
-}
-
-/* Responsive media */
-img, video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
 /* ===============================
-   MOBILE OPTIMIERUNG
+   MOBILE: STICKY HEADER
    =============================== */
 @media (max-width: 480px) {
+  .sticky-area {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
 
   .tabs {
     flex-direction: column;
@@ -118,15 +75,5 @@ img, video {
   .tab {
     width: 100%;
     text-align: center;
-    padding: 14px 0;
-    font-size: 1.05rem;
-  }
-
-  .site-header h1 {
-    font-size: 1.9rem;
-  }
-
-  .tab-content {
-    padding: 14px;
   }
 }

@@ -5,3 +5,5 @@ Dezitiert dazu entwickelt über einen QR auf dem Handy aufrufbar zu sein.
 Stand 11.12: Aktuell Demo Version, Inhalt folgt
 
 Life auf: https://gubruul.github.io/RecipeGameWebsite/
+
+! [QRCode](QR-Code/qr-recipegame_live.png)

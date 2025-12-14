@@ -18,11 +18,11 @@ body {
 }
 
 /* ===============================
-   STICKY AREA (Header + Tabs)
+   STICKY AREA (HEADER + TABS)
    =============================== */
 .sticky-area {
   background: #f5f5f5;
-  overflow: visible; /* wichtig gegen Abschneiden */
+  overflow: visible;
 }
 
 /* ===============================
@@ -38,6 +38,7 @@ body {
     rgba(133,25,25,0)
   );
   border-radius: 14px;
+  transition: padding 0.25s ease;
 }
 
 .site-header h1 {
@@ -55,7 +56,7 @@ body {
   gap: 6px;
   overflow-x: auto;
   scrollbar-width: none;
-  padding-bottom: 6px;
+  padding: 6px 0;
 }
 
 .tabs::-webkit-scrollbar {
@@ -70,43 +71,42 @@ body {
   color: #fff;
   background: #851919;
   border-radius: 12px;
-  border: none;
   font-size: 1rem;
   user-select: none;
   font-family: "Creepster", cursive;
-  text-align: center;
   white-space: nowrap;
-}
-
-/* ACTIVE TAB – heller & stärker hervorgehoben */
-.tab.active {
-  background: #A33A3A; /* heller als vorher */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
   position: relative;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Marker unter aktivem Tab */
+/* ACTIVE TAB – heller, aber gleiche Farbwelt */
+.tab.active {
+  background: #A33A3A;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* Verbindung zum Content */
 .tab.active::after {
   content: "";
   position: absolute;
+  left: 15%;
   bottom: -6px;
-  left: 20%;
-  width: 60%;
-  height: 4px;
-  background: rgba(255,255,255,0.6);
-  border-radius: 4px;
+  width: 70%;
+  height: 6px;
+  background: #A33A3A;
+  border-radius: 0 0 6px 6px;
 }
 
 /* ===============================
-   CONTENT AREA
+   CONTENT
    =============================== */
 .tab-content {
   display: none;
-  background: #ffffff;
+  background: #fff;
   padding: 20px;
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  margin-top: 10px;
+  margin-top: 0;
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 
 .tab-content.active {
@@ -117,18 +117,18 @@ body {
    HEADLINES – ORIGINAL WIEDERHERGESTELLT
    =============================== */
 h1 {
-  color: #851919; /* ORIGINAL */
-  font-family: "Creepster", cursive; /* ORIGINAL */
+  color: #851919;
+  font-family: "Creepster", cursive;
   margin-top: 0;
 }
 
 h2 {
-  color: #3C403F; /* ORIGINAL */
+  color: #3C403F;
   margin-top: 10px;
 }
 
 /* ===============================
-   RESPONSIVE CONTENT
+   RESPONSIVE MEDIA
    =============================== */
 img, video {
   max-width: 100%;
@@ -136,70 +136,12 @@ img, video {
   display: block;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  display: block;
-  overflow-x: auto;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-}
-
-ul, ol {
-  padding-left: 1.2rem;
-  margin: 0 0 1rem 0;
-}
-
-li {
-  margin-bottom: 0.5rem;
-}
-
 /* ===============================
-   BUTTONS
-   =============================== */
-button, .btn {
-  cursor: pointer;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  background: #851919;
-  color: #fff;
-  transition: background 0.2s;
-  width: auto;
-}
-
-button:hover, .btn:hover {
-  background: #3C403F;
-}
-
-/* ===============================
-   MOBILE FIRST
-   =============================== */
-@media (max-width: 600px) {
-  .tab {
-    font-size: 1.1rem;
-    padding: 14px 20px;
-  }
-
-  .tab-container {
-    padding: 12px;
-  }
-
-  .tab-content {
-    padding: 16px;
-  }
-}
-
-/* ===============================
-   SMARTPHONES (≤ 480px)
+   MOBILE OPTIMIERUNG
    =============================== */
 @media (max-width: 480px) {
 
-  /* Sticky nur auf Mobile */
+  /* Sticky Header */
   .sticky-area {
     position: sticky;
     top: 0;
@@ -208,47 +150,38 @@ button:hover, .btn:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   }
 
+  /* Header schrumpft optisch */
+  .site-header {
+    padding: 12px 10px 10px;
+  }
+
+  .site-header h1 {
+    font-size: 1.9rem;
+  }
+
+  /* Tabs untereinander */
   .tabs {
     flex-direction: column;
     gap: 8px;
-    overflow-x: hidden; /* KEIN horizontaler Scroll */
+    overflow-x: hidden;
   }
 
   .tab {
     width: 100%;
     text-align: center;
-    padding: 12px 0;
-    font-size: 1rem;
   }
 
-  /* Mobile-sichere Active-Darstellung */
+  /* Active Tab Mobile-sicher */
   .tab.active {
     box-shadow: 0 2px 4px rgba(0,0,0,0.25);
   }
 
   .tab.active::after {
-    bottom: -2px;
-  }
-
-  .tab-container {
-    padding: 8px;
+    bottom: -4px;
+    height: 4px;
   }
 
   .tab-content {
-    padding: 12px;
-  }
-
-  h1, h2, p {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  button, .btn {
-    width: 100%;
-    padding: 12px 0;
-  }
-
-  ul, ol {
-    padding-left: 1rem;
+    padding: 14px;
   }
 }

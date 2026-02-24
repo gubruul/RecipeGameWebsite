@@ -179,3 +179,11 @@ img, video {
     padding: 14px;
   }
 }
+
+.mein-bild {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+}

@@ -245,3 +245,17 @@ textarea#feedback-text {
 .feedback-text {
   margin-top: 5px;
 }
+
+.recipe-box {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #f4f4f4;
+  border: 1px solid #ccc;
+}
+
+#recipe-select {
+  padding: 8px;
+  font-size: 1rem;
+  margin-top: 10px;
+}

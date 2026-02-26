@@ -1,4 +1,14 @@
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
 const SITE_TITLE = "SpielBeispieltitel";
+const db = getFirestore(app);
 
 document.title = SITE_TITLE;
 document.getElementById("site-title").textContent = SITE_TITLE;
@@ -68,58 +78,56 @@ document.getElementById("feedback-submit").addEventListener("click", () => {
 
 const feedbackContainer = document.getElementById("all-feedback");
 
-// ⭐ Feedback laden beim Start
-function loadFeedback() {
+// 🔥 Feedback laden aus Firebase
+async function loadFeedback() {
   feedbackContainer.innerHTML = "";
-  const feedbackList = JSON.parse(localStorage.getItem("feedbackList")) || [];
 
-  feedbackList.forEach(entry => {
+  const q = query(collection(db, "feedback"), orderBy("date", "desc"));
+  const snapshot = await getDocs(q);
+
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+
     const div = document.createElement("div");
     div.classList.add("feedback-item");
 
     div.innerHTML = `
-      <div class="feedback-stars">${"★".repeat(entry.rating)}</div>
-      <div class="feedback-text">${entry.text}</div>
+      <div class="feedback-stars">${"★".repeat(data.rating)}</div>
+      <div class="feedback-text">${data.text}</div>
     `;
 
     feedbackContainer.appendChild(div);
   });
 }
 
-// ⭐ Feedback speichern
-document.getElementById("feedback-submit").addEventListener("click", () => {
+// 🔥 Feedback speichern in Firebase
+document.getElementById("feedback-submit").addEventListener("click", async () => {
+
   const text = document.getElementById("feedback-text").value.trim();
 
-  if (ratingValue === 0) {
-    document.getElementById("feedback-result").textContent = "Bitte erst Sterne auswählen!";
+  if (ratingValue === 0 || text === "") {
+    document.getElementById("feedback-result").textContent =
+      "Bitte Sterne auswählen und Text eingeben!";
     return;
   }
 
-  if (text === "") {
-    document.getElementById("feedback-result").textContent = "Bitte ein Feedback schreiben!";
-    return;
-  }
-
-  const feedbackList = JSON.parse(localStorage.getItem("feedbackList")) || [];
-
-  feedbackList.push({
+  await addDoc(collection(db, "feedback"), {
     rating: ratingValue,
     text: text,
-    date: new Date().toLocaleString()
+    date: new Date()
   });
-
-  localStorage.setItem("feedbackList", JSON.stringify(feedbackList));
 
   document.getElementById("feedback-text").value = "";
   ratingValue = 0;
   stars.forEach(s => s.classList.remove("selected"));
 
-  document.getElementById("feedback-result").textContent = "Danke für dein Feedback!";
+  document.getElementById("feedback-result").textContent =
+    "Danke für dein Feedback!";
 
   loadFeedback();
 });
 
-// Beim Laden der Seite anzeigen
+// Beim Laden Seite Feedback aus Firebase holen
 document.addEventListener("DOMContentLoaded", loadFeedback);
 
 const recipes = {
@@ -175,3 +183,4 @@ recipeSelect.addEventListener("change", function () {
     recipeDisplay.innerHTML = "";
   }
 });
+

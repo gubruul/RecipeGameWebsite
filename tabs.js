@@ -26,3 +26,42 @@ window.addEventListener("scroll", () => {
     header.classList.remove("shrink");
   }
 });
+
+// ⭐ STAR RATING FORM
+const stars = document.querySelectorAll(".star-rating .star");
+let ratingValue = 0;
+
+stars.forEach(star => {
+  star.addEventListener("mouseover", () => {
+    stars.forEach(s => s.classList.remove("hovered"));
+    star.classList.add("hovered");
+    for (let i = 0; i < star.dataset.value; i++) {
+      stars[i].classList.add("hovered");
+    }
+  });
+  star.addEventListener("mouseout", () => {
+    stars.forEach(s => s.classList.remove("hovered"));
+  });
+  star.addEventListener("click", () => {
+    ratingValue = parseInt(star.dataset.value);
+    stars.forEach(s => s.classList.remove("selected"));
+    for (let i = 0; i < ratingValue; i++) {
+      stars[i].classList.add("selected");
+    }
+  });
+});
+
+// submit handling
+document.getElementById("feedback-submit").addEventListener("click", () => {
+  const text = document.getElementById("feedback-text").value.trim();
+  if (ratingValue === 0) {
+    document.getElementById("feedback-result").textContent = "Bitte erst Sterne auswählen!";
+    return;
+  }
+  if (text === "") {
+    document.getElementById("feedback-result").textContent = "Bitte ein Feedback schreiben!";
+    return;
+  }
+  document.getElementById("feedback-result").textContent =
+    `Danke für deine Bewertung: ${ratingValue} ⭐ und Kommentar!`;
+});

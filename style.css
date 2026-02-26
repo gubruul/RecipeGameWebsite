@@ -187,3 +187,44 @@ img, video {
   border-radius: 10px;
   margin-top: 20px;
 }
+
+/* ⭐ Feedback Stars ⭐ */
+.feedback-section {
+  margin-top: 20px;
+}
+
+.star-rating {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star-rating .star:hover,
+.star-rating .star.selected,
+.star-rating .star.hovered {
+  color: gold;
+}
+
+textarea#feedback-text {
+  width: 100%;
+  min-height: 80px;
+  margin-top: 10px;
+  padding: 6px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
+#feedback-submit {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background: #851919;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+}
+
+#feedback-result {
+  margin-top: 12px;
+  font-weight: bold;
+}

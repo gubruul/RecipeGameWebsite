@@ -65,3 +65,59 @@ document.getElementById("feedback-submit").addEventListener("click", () => {
   document.getElementById("feedback-result").textContent =
     `Danke für deine Bewertung: ${ratingValue} ⭐ und Kommentar!`;
 });
+
+const feedbackContainer = document.getElementById("all-feedback");
+
+// ⭐ Feedback laden beim Start
+function loadFeedback() {
+  feedbackContainer.innerHTML = "";
+  const feedbackList = JSON.parse(localStorage.getItem("feedbackList")) || [];
+
+  feedbackList.forEach(entry => {
+    const div = document.createElement("div");
+    div.classList.add("feedback-item");
+
+    div.innerHTML = `
+      <div class="feedback-stars">${"★".repeat(entry.rating)}</div>
+      <div class="feedback-text">${entry.text}</div>
+    `;
+
+    feedbackContainer.appendChild(div);
+  });
+}
+
+// ⭐ Feedback speichern
+document.getElementById("feedback-submit").addEventListener("click", () => {
+  const text = document.getElementById("feedback-text").value.trim();
+
+  if (ratingValue === 0) {
+    document.getElementById("feedback-result").textContent = "Bitte erst Sterne auswählen!";
+    return;
+  }
+
+  if (text === "") {
+    document.getElementById("feedback-result").textContent = "Bitte ein Feedback schreiben!";
+    return;
+  }
+
+  const feedbackList = JSON.parse(localStorage.getItem("feedbackList")) || [];
+
+  feedbackList.push({
+    rating: ratingValue,
+    text: text,
+    date: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("feedbackList", JSON.stringify(feedbackList));
+
+  document.getElementById("feedback-text").value = "";
+  ratingValue = 0;
+  stars.forEach(s => s.classList.remove("selected"));
+
+  document.getElementById("feedback-result").textContent = "Danke für dein Feedback!";
+
+  loadFeedback();
+});
+
+// Beim Laden der Seite anzeigen
+document.addEventListener("DOMContentLoaded", loadFeedback);

@@ -7,7 +7,7 @@ import {
   orderBy
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-const SITE_TITLE = "SpielBeispieltitel";
+const SITE_TITLE = "WhoDineIt";
 const db = getFirestore(app);
 
 document.title = SITE_TITLE;
@@ -183,4 +183,5 @@ recipeSelect.addEventListener("change", function () {
     recipeDisplay.innerHTML = "";
   }
 });
+
 

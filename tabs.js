@@ -121,3 +121,57 @@ document.getElementById("feedback-submit").addEventListener("click", () => {
 
 // Beim Laden der Seite anzeigen
 document.addEventListener("DOMContentLoaded", loadFeedback);
+
+const recipes = {
+  pasta: `
+    <h4>Spaghetti Aglio e Olio</h4>
+    <p><strong>Zutaten:</strong></p>
+    <ul>
+      <li>Spaghetti</li>
+      <li>Knoblauch</li>
+      <li>Olivenöl</li>
+      <li>Chili</li>
+      <li>Petersilie</li>
+    </ul>
+    <p><strong>Zubereitung:</strong></p>
+    <p>Spaghetti kochen. Knoblauch in Olivenöl anbraten, Chili dazugeben. Pasta untermischen, mit Petersilie servieren.</p>
+  `,
+  burger: `
+    <h4>Classic Burger</h4>
+    <p><strong>Zutaten:</strong></p>
+    <ul>
+      <li>Burger Bun</li>
+      <li>Rindfleisch Patty</li>
+      <li>Käse</li>
+      <li>Salat</li>
+      <li>Tomate</li>
+    </ul>
+    <p><strong>Zubereitung:</strong></p>
+    <p>Patty braten, Käse schmelzen lassen, alles im Bun stapeln und servieren.</p>
+  `,
+  salad: `
+    <h4>Caesar Salad</h4>
+    <p><strong>Zutaten:</strong></p>
+    <ul>
+      <li>Römersalat</li>
+      <li>Croutons</li>
+      <li>Parmesan</li>
+      <li>Caesar Dressing</li>
+    </ul>
+    <p><strong>Zubereitung:</strong></p>
+    <p>Salat waschen, Dressing untermischen, mit Croutons und Parmesan toppen.</p>
+  `
+};
+
+const recipeSelect = document.getElementById("recipe-select");
+const recipeDisplay = document.getElementById("recipe-display");
+
+recipeSelect.addEventListener("change", function () {
+  const selected = this.value;
+
+  if (recipes[selected]) {
+    recipeDisplay.innerHTML = recipes[selected];
+  } else {
+    recipeDisplay.innerHTML = "";
+  }
+});

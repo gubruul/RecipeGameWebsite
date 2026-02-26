@@ -114,5 +114,75 @@ Nachdem das letzte Rätsel gelöst ist, würden wir uns sehr über Ihr Feedback 
   </div>
 
   <script src="tabs.js"></script>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAauE9-PkuAAM74saEWi5P87vY56k2XnhE",
+    authDomain: "whodineitdatabase.firebaseapp.com",
+    projectId: "whodineitdatabase",
+    storageBucket: "whodineitdatabase.firebasestorage.app",
+    messagingSenderId: "576402969281",
+    appId: "1:576402969281:web:d0a81531c624daadecfa40",
+    measurementId: "G-CXXW809K7P"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+    const feedbackContainer = document.getElementById("all-feedback");
+
+  async function loadFeedback() {
+    feedbackContainer.innerHTML = "";
+
+    const q = query(collection(db, "feedback"), orderBy("date", "desc"));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+
+      const div = document.createElement("div");
+      div.classList.add("feedback-item");
+
+      div.innerHTML = `
+        <div class="feedback-stars">${"★".repeat(data.rating)}</div>
+        <div class="feedback-text">${data.text}</div>
+      `;
+
+      feedbackContainer.appendChild(div);
+    });
+  }
+
+  document.getElementById("feedback-submit").addEventListener("click", async () => {
+    const text = document.getElementById("feedback-text").value.trim();
+
+    if (ratingValue === 0 || text === "") {
+      document.getElementById("feedback-result").textContent =
+        "Bitte Sterne auswählen und Text eingeben!";
+      return;
+    }
+
+    await addDoc(collection(db, "feedback"), {
+      rating: ratingValue,
+      text: text,
+      date: new Date()
+    });
+
+    document.getElementById("feedback-text").value = "";
+    ratingValue = 0;
+    stars.forEach(s => s.classList.remove("selected"));
+
+    document.getElementById("feedback-result").textContent = "Danke für dein Feedback!";
+    loadFeedback();
+  });
+
+  loadFeedback();
+</script>
 </body>
 </html>

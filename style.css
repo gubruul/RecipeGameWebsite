@@ -259,3 +259,11 @@ textarea#feedback-text {
   font-size: 1rem;
   margin-top: 10px;
 }
+
+.recipe-box iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+}

@@ -71,10 +71,10 @@ const recipeSelect = document.getElementById("recipe-select");
 const recipeDisplay = document.getElementById("recipe-display");
 
 const recipes = {
-  pasta: `<iframe src="recipes/GenussMenü.pdf"></iframe>`,
-  burger: `<iframe src="recipes/VegetarischesMenü.pdf"></iframe>`,
-  salad: `<iframe src="recipes/SnackMenüMitFleisch.pdf"></iframe>`,
-  dessert: `<iframe src="recipes/SnackMenüVegetarisch.pdf"></iframe>`
+  genussmenue: `<iframe src="recipes/GenussMenü.pdf"></iframe>`,
+  vegetarischesmenue: `<iframe src="recipes/VegetarischesMenü.pdf"></iframe>`,
+  snackmenuefleisch: `<iframe src="recipes/SnackMenüMitFleisch.pdf"></iframe>`,
+  snackmenuevegetarisch: `<iframe src="recipes/SnackMenüVegetarisch.pdf"></iframe>`
 };
 
 recipeSelect?.addEventListener("change", function () {
